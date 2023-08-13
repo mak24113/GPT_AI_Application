@@ -115,7 +115,7 @@ f="final_op.txt"
 with open("./store/"+f,'w',encoding="utf-8") as final_file:
     for topic in final_topics:
         temp=f"find the relevant elaboratedsummary of the given {topic}"
-        llm=OpenAI(temperature=0.2,openai_api_key="")
+        llm=OpenAI(temperature=0.2,openai_api_key="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")
         chain=load_qa_chain(llm,chain_type='stuff')
         docs_from_similarity_searh=doc_store.similarity_search(temp)
         content=str(chain.run(input_documents=docs_from_similarity_searh,question=temp))
