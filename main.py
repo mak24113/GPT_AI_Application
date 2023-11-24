@@ -55,7 +55,7 @@ print("5.Past Year\n")
 
 time_selected=int(input("enter the index from above time"))
 
-driver.get(f"http://www.google.com/search?q={query}")
+driver.get(f"http://www.google.com/search?q={enterquery}")
 
 
 global new
@@ -66,9 +66,9 @@ for i in driver.find_elements(By.TAG_NAME,"a"):
         break
 new[0].click()
 driver.find_element(By.ID,"hdtb-tls").click()
-time.sleep(6)
+time.sleep(2)
 times_ele=driver.find_element(By.CLASS_NAME,"hdtb-mn-hd").click()
-time.sleep(10)
+time.sleep(1)
 timesdiv=driver.find_element(By.ID,"lb")
 
 times=timesdiv.find_elements(By.TAG_NAME,"a")
@@ -86,7 +86,7 @@ time_dictionary = dict(zip(n_times[:-1], times[:-1]))
 #print(time_dictionary)
 list(time_dictionary.values())[time_selected-1].click()
 
-time.sleep(10)
+time.sleep(5)
 
 news_urls={}
 # pages_link_el=driver.find_element(By.TAG_NAME,'tbody')
@@ -167,6 +167,17 @@ for obj in obj_list:
 selected_obj_index=input("enter the index of the links that needs to be selected comma seperated")
 selected_ind_list=selected_obj_index.split(',')
 
-for i in selected_ind_list:
-    text=obj_list[int(i)-1]['content']
-    print(summarize(text))
+with open('final_report.txt','a',encoding="utf-8") as file:
+    for i in selected_ind_list:
+        text=obj_list[int(i)-1]['content']
+        summarized_text=summarize(text)
+
+
+        file.write("Article:---->"+obj_list[int(i)-1]['link'])
+        file.write("\n")
+        file.write("Topic:---->   "+obj_list[int(i) - 1]['topic'])
+        file.write("\n")
+        file.write("Summary:---->"+str(summarized_text))
+        file.write("\n")
+        file.write("\n")
+
