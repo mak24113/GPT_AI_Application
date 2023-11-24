@@ -27,7 +27,7 @@ Read more at: https://yourstory.com/2023/08/data-science-is-changing-game-for-fi
 
 
 def summarize(text):
-    llm = OpenAI(temperature=0.5,openai_api_key="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")
+    llm = OpenAI(temperature=0.5,openai_api_key="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")
     from langchain.text_splitter import CharacterTextSplitter
     text_splitter = CharacterTextSplitter()
     from langchain.chains.mapreduce import MapReduceChain
@@ -38,7 +38,7 @@ def summarize(text):
     from langchain.chains.summarize import load_summarize_chain
 
     template=f"""
-               provide an elaborated  and well defined summary of the given text
+              please provide a summary in 150 or 200 words 
                 """
     system_message_prompt_map = SystemMessagePromptTemplate.from_template(template)
 
@@ -79,7 +79,7 @@ def summarize(text):
 def find_topics(text):
     from langchain.chains import create_extraction_chain, create_extraction_chain_pydantic
     llm3 = ChatOpenAI(temperature=0.3,
-                      openai_api_key=os.getenv('OPENAI_API_KEY', "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"),
+                      openai_api_key=os.getenv('OPENAI_API_KEY', "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"),
                       model_name="gpt-3.5-turbo-0613",
                       request_timeout=180
                       )
@@ -90,7 +90,7 @@ def find_topics(text):
     print(docs1)
 
     template1 = f"""
-       find the most relevant  and suitable one line defined topic from the given text  .
+       find the most relevant,appropriate and suitable one line defined topic from the given text .
       """
     system_message_prompt_map1 = SystemMessagePromptTemplate.from_template(template1)
 
