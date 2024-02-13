@@ -23,6 +23,7 @@ from langchain.prompts.chat import (
     )
 
 def summarize(text):
+    #need to mention API Key
     llm = OpenAI(temperature=0.5,openai_api_key="")
 
     text_splitter = CharacterTextSplitter()
@@ -66,7 +67,9 @@ def summarize(text):
 
 
 def find_topics(text):
+   
     from langchain.chains import create_extraction_chain, create_extraction_chain_pydantic
+    #need to mention API Key
     llm3 = ChatOpenAI(temperature=0.3,
                       openai_api_key=os.getenv('OPENAI_API_KEY', ""),
                       model_name="gpt-3.5-turbo-0613",
