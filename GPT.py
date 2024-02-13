@@ -23,7 +23,7 @@ from langchain.prompts.chat import (
     )
 
 def summarize(text):
-    llm = OpenAI(temperature=0.5,openai_api_key="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")
+    llm = OpenAI(temperature=0.5,openai_api_key="")
 
     text_splitter = CharacterTextSplitter()
     from langchain.chains.mapreduce import MapReduceChain
@@ -68,7 +68,7 @@ def summarize(text):
 def find_topics(text):
     from langchain.chains import create_extraction_chain, create_extraction_chain_pydantic
     llm3 = ChatOpenAI(temperature=0.3,
-                      openai_api_key=os.getenv('OPENAI_API_KEY', "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"),
+                      openai_api_key=os.getenv('OPENAI_API_KEY', ""),
                       model_name="gpt-3.5-turbo-0613",
                       request_timeout=180
                       )
