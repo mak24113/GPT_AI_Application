@@ -1,6 +1,4 @@
 import time
-from GPT import summarize,find_topics
-from langchain.chains.question_answering import load_qa_chain
 import selenium
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -97,11 +95,10 @@ if __name__ == "__main__":
         # print("Link",news_urls_li[i])
         txt = str(driver.find_elements(By.TAG_NAME, "body")[0].text)
         content_text = find_content(keywords, txt)
-        topic = find_topics(content_text)
         link = final_url[i]
-        list_obj = {"link": str(link), "topic": topic, "content": content_text}
+        list_obj = {"link": str(link),"content": content_text}
         obj_list.append(list_obj)
-
+    print(obj_list)
     selected_obj_index = input("enter the index of the links that needs to be selected comma seperated")
     selected_ind_list = selected_obj_index.split(',')
 
@@ -109,11 +106,7 @@ if __name__ == "__main__":
     with open('final_report.txt', 'a', encoding="utf-8") as file:
         for i in selected_ind_list:
             text = obj_list[int(i) - 1]['content']
-            summarized_text = summarize(text)
             file.write("Article:---->" + obj_list[int(i) - 1]['link'])
             file.write("\n")
-            file.write("Topic:---->   " + obj_list[int(i) - 1]['topic'])
-            file.write("\n")
-            file.write("Summary:---->" + str(summarized_text)[4:])
-            file.write("\n")
+            file.write("Topic:---->   " + obj_list[int(i) - 1]['content'])
             file.write("\n")
